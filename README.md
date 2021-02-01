@@ -9,4 +9,4 @@ To be added: HTTP downloads, Mods support (fs_game), various bugfixes.
 ## Credits
 
 Big thanks to all of [@KILLTUBE](https://github.com/KILLTUBE/) for the help & support.
-This project uses code from projects such as libcod and CoDExtended (server-side).
+This project uses some of the code from libcod and CoDExtended (server-side).
