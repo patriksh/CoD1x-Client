@@ -20,8 +20,8 @@ COD::COD() {
 	cracking_hook_call(0x460399, (int)Sys_LoadDll);
 	cracking_hook_call(0x43822C, (int)X_CL_Frame);
 
-	Cvar_Set("shortversion", "1.1^4x^7");
-	Cvar_Set("version", "COD MP 1.1^4x ^7build 1413 Feb 1 2020 23:10:00 win - x86");
+	Cvar_Set("shortversion", "1.1");
+	Cvar_Set("version", "COD MP 1.1x ^7build 1413 Feb 1 2020 23:10 by Dftd and Prawy");
 
 	if (GetModuleHandle("cgame_mp_x86.dll") != NULL)
 		DLLInit();
