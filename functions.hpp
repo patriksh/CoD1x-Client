@@ -1,6 +1,15 @@
 #pragma once
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <functional>
+// Pretty sure I gotta clear up those #includes. These are both in discord.hpp and here.
+
 #define QDECL __cdecl
 #define MAX_SERVERSTATUS_TEXT 1024
+#define MAX_NAME_LENGTH 32
 #define BIG_INFO_STRING 8192
 #define MAX_VA_STRING 32000
 
@@ -49,6 +58,23 @@ typedef struct {
     unsigned short port;
 } netadr_t;
 
+typedef struct {
+    netadr_t adr;
+    char hostName[MAX_NAME_LENGTH];
+    char mapName[MAX_NAME_LENGTH];
+    char game[MAX_NAME_LENGTH];
+    int netType;
+    int gameType;
+    int clients;
+    int maxClients;
+    int minPing;
+    int maxPing;
+    int ping;
+    qboolean visible;
+    int allowAnonymous;
+    int pswrd;
+} serverInfo_t;
+
 static int (QDECL* syscall)(int arg, ...) = (int (QDECL*)(int, ...))0x460230;
 static short BigShort(short l);
 
@@ -57,6 +83,9 @@ static Com_Printf_t Com_Printf = (Com_Printf_t)0x4357B0;
 
 typedef int (*QDECL Com_Error_t)(int code, const char* fmt, ...);
 static Com_Error_t Com_Error = (Com_Error_t)0x435AD0;
+
+typedef int (*QDECL Com_Sprintf_t)(char* dest, int size, const char* fmt, ...);
+static Com_Sprintf_t Com_Sprintf = (Com_Sprintf_t)0x44AC60;
 
 typedef const char* (*QDECL va_t)(const char* format, ...);
 static va_t va = (va_t)0x44ACE0;
@@ -76,3 +105,29 @@ static CL_Frame_t CL_Frame = (CL_Frame_t)0x411280;
 
 typedef char* (*NET_AdrToString_t)(netadr_t);
 static NET_AdrToString_t NET_AdrToString = (NET_AdrToString_t)0x449150;
+
+typedef char* (*CL_SetServerInfo_t)(const char*, serverInfo_t*, int);
+static CL_SetServerInfo_t CL_SetServerInfo = (CL_SetServerInfo_t)0x4129F0;
+
+typedef char* (*Info_ValueForKey_t)(const char*, const char*);
+static Info_ValueForKey_t Info_ValueForKey = (Info_ValueForKey_t)0x44ADA0;
+
+typedef char* (*Info_SetValueForKey_t)(char*, const char*, const char*);
+static Info_SetValueForKey_t Info_SetValueForKey = (Info_SetValueForKey_t)0x44B150;
+
+static void eraseAllSubStr(std::string& mainStr, const std::string& toErase) {
+    size_t pos = std::string::npos;
+    while ((pos = mainStr.find(toErase)) != std::string::npos) {
+        mainStr.erase(pos, toErase.length());
+    }
+}
+
+static void eraseSubStrings(std::string& mainStr, const std::vector<std::string>& strList) {
+    std::for_each(strList.begin(), strList.end(), std::bind(eraseAllSubStr, std::ref(mainStr), std::placeholders::_1));
+}
+
+inline std::string trim(const std::string& s) {
+    auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) {return std::isspace(c); });
+    auto wsback = std::find_if_not(s.rbegin(), s.rend(), [](int c) {return std::isspace(c); }).base();
+    return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
+}

@@ -61,7 +61,7 @@ class UDPSocket {
             add.sin_addr.s_addr = htonl(INADDR_ANY);
             add.sin_port = htons(port);
 
-            int ret = bind(sock, reinterpret_cast<SOCKADDR*>(&add), sizeof(add));
+            int ret = ::bind(sock, reinterpret_cast<SOCKADDR*>(&add), sizeof(add));
             if (ret < 0)
                 throw std::system_error(WSAGetLastError(), std::system_category(), "Bind failed");
         }

@@ -33,19 +33,8 @@ short BigShort(short l) {
 	return (b1 << 8) + b2;
 }
 
-void eraseAllSubStr(std::string& mainStr, const std::string& toErase) {
-	size_t pos = std::string::npos;
-	while ((pos = mainStr.find(toErase)) != std::string::npos) {
-		mainStr.erase(pos, toErase.length());
-	}
-}
-
-void eraseSubStrings(std::string& mainStr, const std::vector<std::string>& strList) {
-	std::for_each(strList.begin(), strList.end(), std::bind(eraseAllSubStr, std::ref(mainStr), std::placeholders::_1));
-}
-
-void cleanHostname(std::string& hostname) {
-	eraseSubStrings(hostname, { "", "^1", "^2", "^3", "^4", "^5", "^6", "^7", "^8", "^9^", "^0" }); // { '', '^1', '^2', '^3', '^4', '^5', '^6', '^7', '^8', '^9', '^0' }
+void monoHostname(std::string& hostname) {
+	eraseSubStrings(hostname, { "", "^1", "^2", "^3", "^4", "^5", "^6", "^7", "^8", "^9^", "^0" });
 }
 
 // TODO: Implement error handling because this is a frickin mess.
@@ -71,7 +60,7 @@ void discordServerinfo(netadr_t* a) {
 		if (v == "mapname") {
 			strncpy(discordMap, vars[i + 1].c_str(), strlen(vars[i + 1].c_str()) + 1);
 		} else if (v == "sv_hostname") {
-			cleanHostname(vars[i + 1]);
+			monoHostname(vars[i + 1]);
 			strncpy(discordHost, vars[i + 1].c_str(), strlen(vars[i + 1].c_str()) + 1);
 		}
 		i++;

@@ -16,12 +16,23 @@ void X_CL_Frame(int msec) {
 	X_Discord_Frame();
 }
 
+char* __cdecl X_ClearHostname(char* a1, const char* a2, size_t a3) {
+	std::string hostname(a2);
+	hostname = trim(hostname); // Remove spaces at beggining.
+	eraseSubStrings(hostname, { "", "", "", "" }); // Remove symbols - SWITCH TO WHITELIST ASAP!
+
+	if (hostname == "") hostname = "Unnamed Server";
+
+	return strncpy(a1, hostname.c_str(), a3);
+}
+
 COD::COD() {
 	cracking_hook_call(0x460399, (int)Sys_LoadDll);
 	cracking_hook_call(0x43822C, (int)X_CL_Frame);
+	cracking_hook_call(0x412A2C, (int)X_ClearHostname);
 
-	Cvar_Set("shortversion", "1.1");
-	Cvar_Set("version", "COD MP 1.1x ^7build 1413 Feb 1 2020 23:10 by Dftd and Prawy");
+	Cvar_Set("shortversion", "1.1x");
+	Cvar_Set("version", "COD MP 1.1x build 1414 Feb 5 2020 00:10 by Dftd and Prawy");
 
 	if (GetModuleHandle("cgame_mp_x86.dll") != NULL)
 		DLLInit();
