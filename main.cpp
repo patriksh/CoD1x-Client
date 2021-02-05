@@ -18,9 +18,7 @@ void X_CL_Frame(int msec) {
 
 char* __cdecl X_ClearHostname(char* a1, const char* a2, size_t a3) {
 	std::string hostname(a2);
-	hostname = trim(hostname); // Remove spaces at beggining.
-	eraseSubStrings(hostname, { "", "", "", "" }); // Remove symbols - SWITCH TO WHITELIST ASAP!
-
+	hostname = trim(clearSymbols(hostname));
 	if (hostname == "") hostname = "Unnamed Server";
 
 	return strncpy(a1, hostname.c_str(), a3);

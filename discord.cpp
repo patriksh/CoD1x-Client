@@ -33,10 +33,6 @@ short BigShort(short l) {
 	return (b1 << 8) + b2;
 }
 
-void monoHostname(std::string& hostname) {
-	eraseSubStrings(hostname, { "", "^1", "^2", "^3", "^4", "^5", "^6", "^7", "^8", "^9^", "^0" });
-}
-
 // TODO: Implement error handling because this is a frickin mess.
 
 void discordServerinfo(netadr_t* a) {
@@ -60,7 +56,9 @@ void discordServerinfo(netadr_t* a) {
 		if (v == "mapname") {
 			strncpy(discordMap, vars[i + 1].c_str(), strlen(vars[i + 1].c_str()) + 1);
 		} else if (v == "sv_hostname") {
-			monoHostname(vars[i + 1]);
+			// why the hell I'm not using like a new variable instead of vars[i + 1]?! fix
+			vars[i + 1] = clearSymbols(vars[i + 1]);
+			vars[i + 1] = clearColors(vars[i + 1]);
 			strncpy(discordHost, vars[i + 1].c_str(), strlen(vars[i + 1].c_str()) + 1);
 		}
 		i++;

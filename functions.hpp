@@ -5,6 +5,7 @@
 #include <set>
 #include <algorithm>
 #include <functional>
+#include <regex>
 // Pretty sure I gotta clear up those #includes. These are both in discord.hpp and here.
 
 #define QDECL __cdecl
@@ -115,6 +116,7 @@ static Info_ValueForKey_t Info_ValueForKey = (Info_ValueForKey_t)0x44ADA0;
 typedef char* (*Info_SetValueForKey_t)(char*, const char*, const char*);
 static Info_SetValueForKey_t Info_SetValueForKey = (Info_SetValueForKey_t)0x44B150;
 
+// this eraseAll mess can be coded a bit better
 static void eraseAllSubStr(std::string& mainStr, const std::string& toErase) {
     size_t pos = std::string::npos;
     while ((pos = mainStr.find(toErase)) != std::string::npos) {
@@ -126,8 +128,22 @@ static void eraseSubStrings(std::string& mainStr, const std::vector<std::string>
     std::for_each(strList.begin(), strList.end(), std::bind(eraseAllSubStr, std::ref(mainStr), std::placeholders::_1));
 }
 
-inline std::string trim(const std::string& s) {
-    auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) {return std::isspace(c); });
-    auto wsback = std::find_if_not(s.rbegin(), s.rend(), [](int c) {return std::isspace(c); }).base();
+static bool clearSymbolsSub(char c) {
+    return (strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-~`!?@#$.,><'\":;/\\|(){}[]=+*&^ ", c) == NULL);
+}
+
+static std::string clearColors(std::string& hostname) {
+    eraseSubStrings(hostname, { "^1", "^2", "^3", "^4", "^5", "^6", "^7", "^8", "^9^", "^0" });
+    return hostname;
+}
+
+static std::string clearSymbols(std::string& s) {
+    s.erase(std::remove_if(s.begin(), s.end(), clearSymbolsSub), s.end());
+    return s;
+}
+
+static std::string trim(const std::string& s) {
+    auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) { return std::isspace(c); });
+    auto wsback = std::find_if_not(s.rbegin(), s.rend(), [](int c) { return std::isspace(c); }).base();
     return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
 }
