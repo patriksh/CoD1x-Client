@@ -2,9 +2,9 @@
 
 Client-side modification for Call of Duty 1.1. Currently in early development phases.
 
-Current new features: Discord Rich Presence, Whitelist for weird symbols like square 
+Current features/bugfixes: Discord RPC, servername whitelist (no more []), fs_game fix (CD-Key)
 
-To be added: HTTP downloads, Mods support (fs_game), various bugfixes.
+To be added: HTTP downloads, more bugfixes.
 
 ## Credits
 
