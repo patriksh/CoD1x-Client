@@ -24,10 +24,15 @@ char* __cdecl X_ClearHostname(char* a1, const char* a2, size_t a3) {
 	return strncpy(a1, hostname.c_str(), a3);
 }
 
+int Com_ReadCDKey(const char* filename) {
+	return false;
+}
+
 COD::COD() {
 	cracking_hook_call(0x460399, (int)Sys_LoadDll);
 	cracking_hook_call(0x43822C, (int)X_CL_Frame);
 	cracking_hook_call(0x412A2C, (int)X_ClearHostname);
+	cracking_hook_function(0x436A40, (int)Com_ReadCDKey);
 
 	Cvar_Set("shortversion", "1.1x");
 	Cvar_Set("version", "COD MP 1.1x build 1414 Feb 5 2020 00:10 by Dftd and Prawy");
