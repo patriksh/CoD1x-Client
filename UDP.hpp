@@ -51,7 +51,7 @@ class UDPSocket {
             if (ret < 0)
                 throw std::system_error(WSAGetLastError(), std::system_category(), "recvfrom failed");
 
-            buffer[ret] = 0;
+            buffer[ret] = 0; // Unhandled exception at 0x7615A842 in CoDMP.exe: Microsoft C++ exception: std::system_error at memory location 0x021CEFA8.
             return from;
         }
 
