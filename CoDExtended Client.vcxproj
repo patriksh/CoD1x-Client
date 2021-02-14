@@ -73,14 +73,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>CoDExtended</TargetName>
-    <IncludePath>C:\Users\Patrik\source\repos\CoDExtended Client\discord;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Patrik\source\repos\CoDExtended Client\discord;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Patrik\source\repos\CoDExtended Client\discord;C:\Users\Patrik\source\repos\CoDExtended Client\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Patrik\source\repos\CoDExtended Client\curl;C:\Users\Patrik\source\repos\CoDExtended Client\discord;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>CoDExtended</TargetName>
-    <IncludePath>C:\Users\Patrik\source\repos\CoDExtended Client\discord;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Patrik\source\repos\CoDExtended Client\discord;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Patrik\source\repos\CoDExtended Client\discord;C:\Users\Patrik\source\repos\CoDExtended Client\curl;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Patrik\source\repos\CoDExtended Client\curl;C:\Users\Patrik\source\repos\CoDExtended Client\discord;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -92,7 +92,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;CURL_STATICLIB;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -102,8 +102,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalDependencies>ws2_32.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\Patrik\source\repos\CoDExtended Client\discord;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;libcurl.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Patrik\source\repos\CoDExtended Client\curl;C:\Users\Patrik\source\repos\CoDExtended Client\discord;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,7 +112,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;CURL_STATICLIB;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -124,8 +124,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalDependencies>ws2_32.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\Patrik\source\repos\CoDExtended Client\discord;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;libcurl.lib;discord-rpc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Patrik\source\repos\CoDExtended Client\curl;C:\Users\Patrik\source\repos\CoDExtended Client\discord;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -166,6 +166,7 @@
     <ClInclude Include="discord.hpp" />
     <ClInclude Include="discord\discord_register.h" />
     <ClInclude Include="discord\discord_rpc.h" />
+    <ClInclude Include="curl.hpp" />
     <ClInclude Include="functions.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="cracking.hpp" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="cracking.cpp" />
     <ClCompile Include="discord.cpp" />
+    <ClCompile Include="curl.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
