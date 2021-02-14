@@ -9,10 +9,10 @@ CoD1x is still in very early development phases and it's not ready to be used "i
 - Discord RPC
 - servername whitelist (no more [] symbols or unnamed servers)
 - CD-Key is invalid error when mod is loaded fix
+- cURL (fast) downloads
 
 ## To be added
 
-- cURL downloads
 - various bugfixes
 
 ## Credits
