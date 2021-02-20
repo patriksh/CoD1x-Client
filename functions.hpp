@@ -179,6 +179,9 @@ typedef struct {
     netchan_t	netchan;
 } clientConnection_t;
 
+typedef void* (*Sys_LoadDll_t)(const char* name, char* fqpath, int(**entryPoint) (int, ...), int (*systemcalls)(int, ...));
+static Sys_LoadDll_t Sys_LoadDll = (Sys_LoadDll_t)0x4633A0;
+
 static int (QDECL* syscall)(int arg, ...) = (int (QDECL*)(int, ...))0x460230;
 static short BigShort(short l);
 

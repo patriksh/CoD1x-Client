@@ -12,22 +12,12 @@ using namespace std;
 #include "discord.hpp"
 #include "curl.hpp"
 
-class COD {
-    public:
-        COD();
-    };
-COD* game;
-
-DWORD WINAPI tExtend(LPVOID);
+DWORD WINAPI CoD1X(LPVOID);
 DWORD g_threadID;
 HMODULE g_hModule;
 
+void* X_Sys_LoadDll(const char*, char*, int(**) (int, ...), int (*)(int, ...));
 void DLLInit();
-
-template <typename T, typename ... Ts> T call(size_t addr, Ts ... ts);
-template <typename T, typename ... Ts>
-T call(size_t addr, Ts ... ts) {
-    T(*f)(...);
-    *(T*)&f = (T)addr;
-    return f(ts...);
-}
+void X_CL_Frame(int);
+char* __cdecl X_ClearHostname(char*, const char*, size_t);
+int X_Com_ReadCDKey(const char*);
