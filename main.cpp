@@ -30,13 +30,13 @@ int X_Com_ReadCDKey(const char* filename) {
 }
 
 COD::COD() {
-	cracking_hook_call(0x460399, (int)Sys_LoadDll);
-	cracking_hook_call(0x43822C, (int)X_CL_Frame);
-	cracking_hook_call(0x412A2C, (int)X_ClearHostname);
-	cracking_hook_function(0x436A40, (int)X_Com_ReadCDKey);
-	cracking_hook_call(0x410316, (int)X_CL_NextDownload);
-	cracking_hook_call(0x410376, (int)X_CL_NextDownload);
-	cracking_hook_call(0x41656C, (int)X_CL_NextDownload);
+	__call(0x460399, (int)Sys_LoadDll);
+	__call(0x43822C, (int)X_CL_Frame);
+	__call(0x412A2C, (int)X_ClearHostname);
+	__jmp(0x436A40, (int)X_Com_ReadCDKey);
+	__call(0x410316, (int)X_CL_NextDownload);
+	__call(0x410376, (int)X_CL_NextDownload);
+	__call(0x41656C, (int)X_CL_NextDownload);
 
 	Cvar_Set("shortversion", "1.1x");
 	Cvar_Set("version", "COD MP 1.1x build 1415 Feb 14 2021 18:45 by Dftd and Prawy");

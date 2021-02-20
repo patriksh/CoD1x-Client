@@ -1,19 +1,4 @@
 #pragma once
-#include <string.h>
 
-int cracking_nop(int from, int to);
-void cracking_hook_function(int from, int to);
-void cracking_hook_call(int from, int to);
-int cracking_write_hex(int address, char* hex);
-int singleHexToNumber(char hexchar);
-int hexToBuffer(char* hex, char* buffer, int bufferLen);
-
-class cHook {
-    public:
-        int from;
-		int to;
-		unsigned char oldCode[5];
-		cHook(int from, int to);
-		void hook();
-		void unhook();
-};
+void __jmp(int from, int to);
+void __call(int from, int to);
