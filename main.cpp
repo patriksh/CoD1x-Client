@@ -28,7 +28,7 @@ DWORD WINAPI CoD1X(LPVOID) {
 	__jmp(0x436A40,  (int) X_Com_ReadCDKey);
 
 	Cvar_Set("shortversion", "1.1x");
-	Cvar_Set("version", "COD MP 1.1x build 1415 Feb 14 2021 18:45 by Dftd and Prawy");
+	Cvar_Set("version", "COD MP 1.1x build 1416 Feb 20 2021 18:45 by Dftd and Prawy");
 
 	if (GetModuleHandle("cgame_mp_x86.dll") != NULL)
 		DLLInit();
