@@ -119,7 +119,7 @@ void CL_cURL_BeginDownload(const char* localName, const char* remoteURL) {
 	Cvar_Set("cl_downloadName", downloadName);
 	Cvar_Set("cl_downloadSize", "0");
 	Cvar_Set("cl_downloadCount", "0");
-	Cvar_SetValue("cl_downloadTime", -4); // cls.realtime((float)(0x155F3E0)) value is 4 but it needs to be -4 for some reason so we're setting it to -4
+	Cvar_SetValue("cl_downloadTime", (float)(0x155F3E0)); // cls.realtime((float)(0x155F3E0))
 
 	downloadBlock = 0;
 	downloadCount = 0;
