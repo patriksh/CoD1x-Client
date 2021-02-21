@@ -32,6 +32,9 @@ int downloadCount;
 int downloadSize;
 char downloadList[MAX_INFO_STRING];
 
+#define cls_realtime ((int*)0x155F3E0)
+
+
 void CL_cURL_Cleanup(void) {
 	if (downloadCURLM) {
 		CURLMcode result;
@@ -119,7 +122,7 @@ void CL_cURL_BeginDownload(const char* localName, const char* remoteURL) {
 	Cvar_Set("cl_downloadName", downloadName);
 	Cvar_Set("cl_downloadSize", "0");
 	Cvar_Set("cl_downloadCount", "0");
-	Cvar_SetValue("cl_downloadTime", (float)(0x155F3E0)); // cls.realtime((float)(0x155F3E0))
+	Cvar_Set("cl_downloadTime", va("%i", *cls_realtime));
 
 	downloadBlock = 0;
 	downloadCount = 0;
