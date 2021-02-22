@@ -1,5 +1,11 @@
 # CoD1X Client
 
+Ehm, I think we moved over to https://github.com/riicchhaarrd/codextended-client/
+
+---
+---
+---
+
 CoD1x Client is a modification of the Call of Duty 1 client game. It supports patch 1.1, which is the most popular patch with around 100 servers.
 Goal of CoD1x is to fix and improve the original 1.1 client, by adding features that are present in newer, but less popular patches, and also by adding some of our own unique features (e.g. Discord RPC).
 CoD1x is still in very early development phases and it's not ready to be used "in production".
