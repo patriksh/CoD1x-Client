@@ -2,8 +2,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 
-using namespace std;
-
 #include <windows.h>
 #include <process.h>
 #include <stdio.h>

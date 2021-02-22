@@ -24,6 +24,10 @@
 // #define CLC_BASE_ADDR 0x15CE860
 // #define clc (*((clientConnection_t*)(CLC_BASE_ADDR)))
 
+#define cls_realtime *((int*)0x155F3E0)
+#define cls_state *((int*)0x155F2C0)
+#define clc_demoplaying *((PINT)0x15EF004)
+
 typedef enum { qfalse, qtrue } qboolean;
 
 typedef struct cvar_s {

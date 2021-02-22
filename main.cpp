@@ -10,7 +10,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved) {
 			break;
 		case DLL_PROCESS_DETACH:
 		case DLL_THREAD_DETACH:
-			Discord_Shutdown();
+			X_CL_DiscordShutdown();
 			FreeLibraryAndExitThread(g_hModule, 0);
 			break;
 	}
@@ -30,6 +30,8 @@ DWORD WINAPI CoD1X(LPVOID) {
 	Cvar_Set("shortversion", "1.1x");
 	Cvar_Set("version", "COD MP 1.1x build 1416 Feb 20 2021 18:45 by Dftd and Prawy");
 
+	X_CL_DiscordInitialize();
+
 	if (GetModuleHandle("cgame_mp_x86.dll") != NULL)
 		DLLInit();
 
@@ -48,7 +50,7 @@ void DLLInit() {
 
 void X_CL_Frame(int msec) {
 	CL_Frame(msec);
-	X_Discord_Frame();
+	X_CL_DiscordFrame();
 	X_Download_Frame();
 }
 

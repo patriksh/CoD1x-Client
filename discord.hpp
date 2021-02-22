@@ -7,8 +7,9 @@
 #include <set>
 #include <algorithm>
 #include <functional>
-#include "UDP.hpp"
 #include "discord/discord_rpc.h"
 #include "discord/discord_register.h"
 
-void X_Discord_Frame();
+void X_CL_DiscordInitialize();
+void X_CL_DiscordFrame();
+void X_CL_DiscordShutdown();

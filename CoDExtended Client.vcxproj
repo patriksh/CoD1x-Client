@@ -170,7 +170,6 @@
     <ClInclude Include="functions.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="cracking.hpp" />
-    <ClInclude Include="UDP.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cracking.cpp" />
